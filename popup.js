@@ -275,14 +275,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     `[persona: elite] [errors: preempted] [tone: expert]`;
         break;
       case "concise":
-        intro = "📝 [OPTIMIZED VIA CLEAR & CONCISE MODE]";
-        structure = `[Objective]\n` +
-                    `Execute task with high density of intent: "${promptIntent}".\n\n` +
+        intro = "🔋 [OPTIMIZED VIA TOKEN SAVER MODE]";
+        structure = `[Task]\nExecute: "${promptIntent}".\n\n` +
                     `[Directives]\n` +
-                    `- Output immediately without introductions or summaries.\n` +
-                    `- Format as an active checklist or table.${rulesSection}\n\n` +
+                    `- Respond immediately and directly with zero preambles or filler summaries.\n` +
+                    `- Keep output extremely short, dense, and list-oriented.${rulesSection}\n\n` +
                     `[Constraints]\n` +
-                    `[greetings: none] [format: checklist] [density: high]`;
+                    `[max_words: 50] [greetings: none] [intro_outro: none] [format: short_bullets]`;
         break;
       case "creative":
         intro = "🎨 [OPTIMIZED VIA CREATIVE EXPLORER]";

@@ -31,12 +31,11 @@ function getSystemPrompt(style, customRules) {
       
     case "concise":
       instructions = 
-        "You are an elite, world-class Prompt Engineer. Your objective is to optimize the user's prompt for speed, clarity, " +
-        "and maximum density of intent. Keep the original core intent intact, but:\n" +
-        "1. Strip out all redundant phrases, throat-clearing, and introductory greetings.\n" +
-        "2. Formulate highly specific, direct command verbs.\n" +
-        "3. Structure instructions into clean checklists or brief bullet points.\n" +
-        "4. Enforce high accuracy and short, punchy responses.";
+        "You are an elite, world-class Prompt Engineer specializing in EXTREME TOKEN CONSERVATION. Your objective is to optimize the user's prompt to consume the ABSOLUTE MINIMUM number of tokens (both Input and Output):\n" +
+        "1. Extreme Input Compression: Rewrite the prompt to be as short and dense as possible. Strip all background fluff, introductory greetings, and throat-clearing. Use direct, punchy command verbs and concise bracketed tags.\n" +
+        "2. Extreme Output Caps: Automatically inject highly restrictive limits into the prompt to limit the response size (e.g., '[max 50 words]', '[no intro/summary]', '[direct code only]', or '[short bullets only]').\n" +
+        "3. Explicitly command the target LLM to skip all polite preambles (such as 'Sure, here is...', 'I hope this helps!'), conversational filler, or summaries in its response.\n" +
+        "4. Deduplicate all instructions and aggressively merge multiple rules into singular, compact lines.";
       break;
       
     case "creative":
