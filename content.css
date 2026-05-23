@@ -110,6 +110,20 @@
   filter: drop-shadow(0 0 4px rgba(0, 242, 254, 0.4));
 }
 
+.toast-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toast-icon-svg {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 4px rgba(0, 242, 254, 0.3));
+}
+
 .toast-text {
   color: #f4f4f5;
   font-size: 12px;

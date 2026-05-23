@@ -12,6 +12,28 @@
   let lastActiveInput = null;
   let isContentEditable = false;
 
+  // Premium SVG Icons for Toast Notifications
+  const ICON_SUCCESS_SVG = `
+    <svg class="toast-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+  `;
+
+  const ICON_REVERT_SVG = `
+    <svg class="toast-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 2v6h6"></path>
+      <path d="M3 13a9 9 0 1 0 3-7.7L3 8"></path>
+    </svg>
+  `;
+
+  const ICON_ERROR_SVG = `
+    <svg class="toast-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+  `;
+
   // Selectors matching input fields on popular AI platforms
   const AI_PLATFORM_SELECTORS = [
     'textarea',
@@ -287,7 +309,7 @@
       
       undoToast.innerHTML = `
         <div class="toast-message-block">
-          <span class="toast-icon">⚡</span>
+          <span class="toast-icon-container">${ICON_SUCCESS_SVG}</span>
           <span class="toast-text">Prompt optimized successfully!</span>
         </div>
         <button class="toast-action-btn" id="toast-undo-btn">Undo</button>
@@ -300,7 +322,7 @@
           dismissToast();
           
           // Brief reverted notification
-          showTemporaryToast("Prompt reverted to original draft.", "🔄");
+          showTemporaryToast("Prompt reverted to original draft.", "revert");
         }
       });
 
@@ -308,6 +330,7 @@
     } else {
       // Reset toast UI if it was repurposed
       undoToast.querySelector(".toast-text").textContent = "Prompt optimized successfully!";
+      undoToast.querySelector(".toast-icon-container").innerHTML = ICON_SUCCESS_SVG;
       const undoBtn = undoToast.querySelector("#toast-undo-btn");
       undoBtn.style.display = "block";
     }
@@ -324,17 +347,20 @@
   }
 
   // Show a standard temporary feedback message
-  function showTemporaryToast(message, icon = "⚡") {
+  function showTemporaryToast(message, type = "success") {
     if (!undoToast) return;
     
     clearTimeout(toastTimeout);
     undoToast.querySelector(".toast-text").textContent = message;
     
     const undoBtn = undoToast.querySelector("#toast-undo-btn");
-    if (undoBtn) undoBtn.style.style = "none";
-    undoBtn.style.display = "none";
+    if (undoBtn) undoBtn.style.display = "none";
     
-    undoToast.querySelector(".toast-icon").textContent = icon;
+    const iconContainer = undoToast.querySelector(".toast-icon-container");
+    if (iconContainer) {
+      iconContainer.innerHTML = type === "revert" ? ICON_REVERT_SVG : ICON_SUCCESS_SVG;
+    }
+    
     undoToast.classList.add("visible");
 
     toastTimeout = setTimeout(() => {
@@ -346,9 +372,9 @@
   function showErrorToast(errorMsg) {
     let cleanMsg = "Optimization failed.";
     if (errorMsg.includes("Missing API key")) {
-      cleanMsg = "🔑 API Key Required! Click extension popup icon to configure.";
+      cleanMsg = "API Key Required! Click extension popup icon to configure.";
     } else {
-      cleanMsg = `⚠️ Error: ${errorMsg.length > 55 ? errorMsg.substring(0, 52) + "..." : errorMsg}`;
+      cleanMsg = `Error: ${errorMsg.length > 55 ? errorMsg.substring(0, 52) + "..." : errorMsg}`;
     }
     
     if (!undoToast) {
@@ -356,7 +382,7 @@
       undoToast.className = "prompt-optimizer-toast";
       undoToast.innerHTML = `
         <div class="toast-message-block">
-          <span class="toast-icon">⚠️</span>
+          <span class="toast-icon-container">${ICON_ERROR_SVG}</span>
           <span class="toast-text">${cleanMsg}</span>
         </div>
         <button class="toast-action-btn" id="toast-undo-btn" style="display:none">Undo</button>
@@ -364,7 +390,7 @@
       document.body.appendChild(undoToast);
     } else {
       undoToast.querySelector(".toast-text").textContent = cleanMsg;
-      undoToast.querySelector(".toast-icon").textContent = "⚠️";
+      undoToast.querySelector(".toast-icon-container").innerHTML = ICON_ERROR_SVG;
       undoToast.querySelector("#toast-undo-btn").style.display = "none";
     }
 

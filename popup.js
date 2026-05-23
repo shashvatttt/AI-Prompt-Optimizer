@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
   optimizeSandboxBtn.addEventListener("click", () => {
     const originalText = playgroundInput.value.trim();
     if (!originalText) {
-      playgroundOutput.value = "⚠️ Please write or paste a prompt draft first!";
+      playgroundOutput.value = "Notice: Please write or paste a prompt draft first!";
       return;
     }
 
@@ -221,11 +221,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function handleFailedOptimization(originalText, style, rules, originalError) {
     let explanatoryNote = "";
     if (originalError.includes("API key") || originalError.includes("invalid") || !apiKeyInput.value.trim()) {
-      explanatoryNote = "⚠️ Setup Needed: To run high-fidelity Groq neural optimization, please enter a valid Groq API key above.\n\n" +
+      explanatoryNote = "Setup Needed: To run high-fidelity Groq neural optimization, please enter a valid Groq API key above.\n\n" +
                         "[DEMO FALLBACK - Preview of optimized structure below]\n" +
                         "--------------------------------------------------\n";
     } else {
-      explanatoryNote = `⚠️ Service Error (${originalError}). Displaying local optimization fallback below:\n` +
+      explanatoryNote = `Service Error (${originalError}). Displaying local optimization fallback below:\n` +
                         "--------------------------------------------------\n";
     }
     
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     switch(style) {
       case "supercharged":
-        intro = "⚡ [OPTIMIZED VIA SUPERCHARGED MODE]";
+        intro = "[OPTIMIZED VIA SUPERCHARGED MODE]";
         structure = `[Context & Objective]\nAct as an elite expert. Execute: "${promptIntent}".\n\n` +
                     `[Instructions for Execution]\n` +
                     `1. Conduct step-by-step analytical reasoning.\n` +
@@ -263,7 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     `[structure: markdown] [bullets: active] [tone: professional]`;
         break;
       case "roleplayer":
-        intro = "🎯 [OPTIMIZED VIA EXPERT ROLE PLAYER]";
+        intro = "[OPTIMIZED VIA EXPERT ROLE PLAYER]";
         structure = `[Persona]\n` +
                     `Act as an elite expert specialist with deep technical mastery and clear analytical focus.\n\n` +
                     `[Objective]\n` +
@@ -275,11 +275,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     `[persona: elite] [errors: preempted] [tone: expert]`;
         break;
       case "concise":
-        intro = "🔋 [OPTIMIZED VIA TOKEN SAVER MODE]";
+        intro = "[OPTIMIZED VIA TOKEN SAVER MODE]";
         structure = `Execute: "${promptIntent}". [max_words: 50] [greetings: none] [intro_outro: none] [format: short_bullets] [no_preamble]${rules ? ` [rules: ${rules.split('\n').join(', ')}]` : ""}`;
         break;
       case "creative":
-        intro = "🎨 [OPTIMIZED VIA CREATIVE EXPLORER]";
+        intro = "[OPTIMIZED VIA CREATIVE EXPLORER]";
         structure = `[Creative Brief]\n` +
                     `Explore innovative and non-obvious combinations for: "${promptIntent}".\n\n` +
                     `[Directives]\n` +

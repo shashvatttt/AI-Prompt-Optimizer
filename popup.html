@@ -42,7 +42,9 @@
       <section class="settings-card">
         <div class="card-header">
           <div class="card-title-container">
-            <span class="card-icon">🔑</span>
+            <svg class="card-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path>
+            </svg>
             <h2>Groq API Credentials</h2>
           </div>
           <a href="https://console.groq.com/keys" target="_blank" class="helper-link">Get Key</a>
@@ -63,7 +65,9 @@
       <section class="settings-card">
         <div class="card-header">
           <div class="card-title-container">
-            <span class="card-icon">⚡</span>
+            <svg class="card-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
             <h2>Optimization Style</h2>
           </div>
         </div>
@@ -73,7 +77,11 @@
           <label class="style-card">
             <input type="radio" name="opt-style" value="supercharged" checked />
             <span class="style-card-content">
-              <span class="style-icon">🚀</span>
+              <svg class="style-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 2s-8 7-9 8c-.67 0-1.25-.26-1.71-.71L5 3 2 6l5.29 5.29c-.45.46-.71 1.04-.71 1.71 1 1 8 9 8 9l3-3-6.29-6.29c.46-.45 1.04-.71 1.71-.71 1-1 8-9 8-9z"></path>
+                <path d="M9 15l-5 5"></path>
+                <path d="M15 9l5-5"></path>
+              </svg>
               <span class="style-title">Supercharged</span>
               <span class="style-desc">Crisp, structured instructions, step-by-step logic.</span>
             </span>
@@ -83,7 +91,11 @@
           <label class="style-card">
             <input type="radio" name="opt-style" value="roleplayer" />
             <span class="style-card-content">
-              <span class="style-icon">🎯</span>
+              <svg class="style-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
               <span class="style-title">Role Player</span>
               <span class="style-desc">Casts AI as top-tier domain experts.</span>
             </span>
@@ -93,7 +105,13 @@
           <label class="style-card">
             <input type="radio" name="opt-style" value="concise" />
             <span class="style-card-content">
-              <span class="style-icon">🔋</span>
+              <svg class="style-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="6" width="18" height="12" rx="2" ry="2"></rect>
+                <line x1="23" y1="11" x2="23" y2="13"></line>
+                <line x1="6" y1="10" x2="6" y2="14"></line>
+                <line x1="10" y1="10" x2="10" y2="14"></line>
+                <line x1="14" y1="10" x2="14" y2="14"></line>
+              </svg>
               <span class="style-title">Token Saver</span>
               <span class="style-desc">Extreme compression. Saves 50-80% tokens.</span>
             </span>
@@ -103,7 +121,12 @@
           <label class="style-card">
             <input type="radio" name="opt-style" value="creative" />
             <span class="style-card-content">
-              <span class="style-icon">🎨</span>
+              <svg class="style-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12c0 1.821.75 3.47 1.956 4.67A3.001 3.001 0 0 0 7 19.5h1a3 3 0 0 1 3 3v-.5z"></path>
+                <circle cx="7.5" cy="10.5" r="1.5"></circle>
+                <circle cx="11.5" cy="7.5" r="1.5"></circle>
+                <circle cx="16.5" cy="7.5" r="1.5"></circle>
+              </svg>
               <span class="style-title">Creative</span>
               <span class="style-desc">Sparks novel ideas & multiple view angles.</span>
             </span>
@@ -113,7 +136,13 @@
         <!-- Custom Guidelines Accordion Toggle -->
         <div class="custom-instructions-container">
           <button id="toggle-custom-rules" class="accordion-header">
-            <span>⚙️ Custom Instructions & Rules</span>
+            <span class="accordion-title-container">
+              <svg class="accordion-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              Custom Instructions & Rules
+            </span>
             <svg class="chevron-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </button>
           <div id="custom-rules-body" class="accordion-content hidden">
@@ -126,7 +155,11 @@
       <section class="settings-card playground-card">
         <div class="card-header">
           <div class="card-title-container">
-            <span class="card-icon">🧪</span>
+            <svg class="card-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 2v7.5L3.5 20a2 2 0 0 0 1.7 3h13.6a2 2 0 0 0 1.7-3L14 9.5V2h-4z"></path>
+              <line x1="8.5" y1="2" x2="15.5" y2="2"></line>
+              <line x1="14" y1="14" x2="8.5" y2="14"></line>
+            </svg>
             <h2>Playground Sandbox</h2>
           </div>
         </div>
