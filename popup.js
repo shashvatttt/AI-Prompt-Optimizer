@@ -237,10 +237,15 @@ document.addEventListener("DOMContentLoaded", () => {
   function generateMockOptimization(prompt, style, rules) {
     let intro = "";
     let structure = "";
-    let promptIntent = prompt;
     
-    if (promptIntent.toLowerCase().startsWith("write a ") || promptIntent.toLowerCase().startsWith("create a ")) {
-      promptIntent = promptIntent.substring(8);
+    // Core Rules: Strip conversational garbage, politeness, and redundant introductory phrases
+    let promptIntent = prompt.trim()
+      .replace(/^(please|could you|can you please|i want you to|would you mind|please help me to|kindly)\s+/i, "")
+      .replace(/^(write a|create a|explain in detail|explain about|tell me about)\s+/i, "");
+
+    // Capitalize first letter of intent
+    if (promptIntent) {
+      promptIntent = promptIntent.charAt(0).toUpperCase() + promptIntent.slice(1);
     }
 
     const rulesSection = rules ? `\n\n[Additional Constraints]\n- ${rules.split('\n').join('\n- ')}` : "";
@@ -248,45 +253,46 @@ document.addEventListener("DOMContentLoaded", () => {
     switch(style) {
       case "supercharged":
         intro = "⚡ [OPTIMIZED VIA SUPERCHARGED MODE]";
-        structure = `[Context & Objective]\nAct as an elite expert. Your task is to comprehensively execute the following request with pristine analytical clarity: "${promptIntent}".\n\n` +
+        structure = `[Context & Objective]\nAct as an elite expert. Execute: "${promptIntent}".\n\n` +
                     `[Instructions for Execution]\n` +
-                    `1. Conduct research and approach the problem systematically using step-by-step reasoning.\n` +
-                    `2. Organize findings with clear headers, logical bullet points, and crisp explanations.\n` +
-                    `3. Provide relevant examples or implementation snippets if applicable.\n` +
-                    `4. Conclude with a concise evaluation of key trade-offs.${rulesSection}\n\n` +
-                    `[Desired Response Format]\n` +
-                    `- **Executive Summary** (1-2 sentences overview)\n` +
-                    `- **Detailed Framework / Analysis** (Main body block)\n` +
-                    `- **Practical Recommendations** (Bulleted action items)`;
+                    `1. Conduct step-by-step analytical reasoning.\n` +
+                    `2. Format using clear markdown headers and bullets.\n` +
+                    `3. Detail key implementation patterns or edge cases.\n` +
+                    `4. Identify and explain 2 critical trade-offs.${rulesSection}\n\n` +
+                    `[Constraints]\n` +
+                    `[structure: markdown] [bullets: active] [tone: professional]`;
         break;
       case "roleplayer":
         intro = "🎯 [OPTIMIZED VIA EXPERT ROLE PLAYER]";
-        structure = `[System Prompt / Expert Persona]\n` +
-                    `You are a world-renowned, elite specialist with decades of domain knowledge and a highly detailed analytical mindset. You are recognized for providing authoritative, highly accurate, and deeply technical solutions.\n\n` +
-                    `[Core Objective]\n` +
-                    `Given your absolute mastery, analyze and execute the following objective: "${promptIntent}".\n\n` +
-                    `[Guidelines]\n` +
-                    `- Adopt a professional, direct, and constructive tone.\n` +
-                    `- Rely only on verifiable facts, avoid generic platitudes, and define advanced terms.\n` +
-                    `- Highlight edge cases or typical pitfalls that a novice might miss.${rulesSection}`;
+        structure = `[Persona]\n` +
+                    `Act as an elite expert specialist with deep technical mastery and clear analytical focus.\n\n` +
+                    `[Objective]\n` +
+                    `Execute target task: "${promptIntent}".\n\n` +
+                    `[Execution Rules]\n` +
+                    `- Maintain authoritative, facts-only tone.\n` +
+                    `- Preempt typical beginner errors or pitfalls.${rulesSection}\n\n` +
+                    `[Constraints]\n` +
+                    `[persona: elite] [errors: preempted] [tone: expert]`;
         break;
       case "concise":
         intro = "📝 [OPTIMIZED VIA CLEAR & CONCISE MODE]";
         structure = `[Objective]\n` +
-                    `Execute the following task with absolute brevity, high signal-to-noise ratio, and clear directives: "${promptIntent}".\n\n` +
-                    `[Output Constraints]\n` +
-                    `- Remove conversational filler or introductory greetings.\n` +
-                    `- Output immediately as a structured checklist or direct table.\n` +
-                    `- Keep sentence structures short, clean, and highly focused.${rulesSection}`;
+                    `Execute task with high density of intent: "${promptIntent}".\n\n` +
+                    `[Directives]\n` +
+                    `- Output immediately without introductions or summaries.\n` +
+                    `- Format as an active checklist or table.${rulesSection}\n\n` +
+                    `[Constraints]\n` +
+                    `[greetings: none] [format: checklist] [density: high]`;
         break;
       case "creative":
         intro = "🎨 [OPTIMIZED VIA CREATIVE EXPLORER]";
         structure = `[Creative Brief]\n` +
-                    `We are exploring novel, innovative, and highly imaginative boundaries. Your goal is to approach the following idea from completely fresh, multi-dimensional perspectives: "${promptIntent}".\n\n` +
-                    `[Creative Directives]\n` +
-                    `- Focus on original and non-obvious combinations of concepts.\n` +
-                    `- Include rich metaphors, illustrative scenarios, and emotional resonance.\n` +
-                    `- Draft 3 distinct alternative solutions ranging from 'practical baseline' to 'radical experimental'.${rulesSection}`;
+                    `Explore innovative and non-obvious combinations for: "${promptIntent}".\n\n` +
+                    `[Directives]\n` +
+                    `- Outline 3 distinct conceptual solutions from practical to extreme experimental.\n` +
+                    `- Use rich analogies and vivid illustrative scenarios.${rulesSection}\n\n` +
+                    `[Constraints]\n` +
+                    `[angles: multi-dimensional] [structure: 3-tier-alternative]`;
         break;
     }
 

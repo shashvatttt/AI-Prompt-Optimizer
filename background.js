@@ -53,6 +53,23 @@ function getSystemPrompt(style, customRules) {
       instructions = "You are a world-class prompt engineer. Refine the user's prompt for optimal clarity and effectiveness.";
   }
 
+  const CORE_RULES = 
+    "\n\n" +
+    "You MUST strictly follow these CORE PROMPT OPTIMIZATION RULES during rewriting:\n" +
+    "1. Remove garbage: Strip conversational greetings (e.g., 'hey', 'please', 'I hope...'), unnecessary politeness, and duplicate/repetitive phrasing.\n" +
+    "2. Compress language: Convert long sentences into short, direct commands. Eliminate filler words.\n" +
+    "3. Keep only relevant context: Retain only information necessary for the output. Delete extra background information.\n" +
+    "4. Structure > Paragraph: Convert raw paragraphs into bullet points, numbered steps, or explicit constraints.\n" +
+    "5. Use explicit constraints: Instead of long explanations, use brief tags (e.g., '[max 100 words]', '[bullet points]', '[beginner level]', '[code only]'). This saves tokens and sharpens output control.\n" +
+    "6. Deduplicate aggressively: Remove duplicate ideas or statements, checking for synonym overlap.\n" +
+    "7. Replace verbose phrases: Use concise equivalents (e.g., replace 'in order to' with 'to', 'due to the fact that' with 'because', 'a large number of' with 'many').\n" +
+    "8. Convert intent to command: Change natural language descriptions to instruction style (e.g., instead of 'I want you to act as a teacher and explain...', write 'Explain as a teacher: ...').\n" +
+    "9. Use placeholders: Avoid repeating target audiences/contexts (e.g., use 'For [Target Audience]:' and reference it as a placeholder).\n" +
+    "10. Context pruning: If the prompt exceeds a reasonable length, prune or summarize the least important lines.\n" +
+    "11. Instruction merging: Merge multiple separate instructions into a single cohesive line (e.g., merge 'Explain simply. Keep it short. Use bullets.' into 'Explain simply in short bullet points.').";
+
+  instructions += CORE_RULES;
+
   if (customRules && customRules.trim()) {
     instructions += `\n\nCRITICAL CONSTRAINTS (You MUST integrate these custom directives into the final optimized prompt structure):\n- ${customRules.trim().split('\n').join('\n- ')}`;
   }
