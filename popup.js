@@ -276,12 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
         break;
       case "concise":
         intro = "🔋 [OPTIMIZED VIA TOKEN SAVER MODE]";
-        structure = `[Task]\nExecute: "${promptIntent}".\n\n` +
-                    `[Directives]\n` +
-                    `- Respond immediately and directly with zero preambles or filler summaries.\n` +
-                    `- Keep output extremely short, dense, and list-oriented.${rulesSection}\n\n` +
-                    `[Constraints]\n` +
-                    `[max_words: 50] [greetings: none] [intro_outro: none] [format: short_bullets]`;
+        structure = `Execute: "${promptIntent}". [max_words: 50] [greetings: none] [intro_outro: none] [format: short_bullets] [no_preamble]${rules ? ` [rules: ${rules.split('\n').join(', ')}]` : ""}`;
         break;
       case "creative":
         intro = "🎨 [OPTIMIZED VIA CREATIVE EXPLORER]";
