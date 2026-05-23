@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="70%" stop-color="#4facfe" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#a18cd1" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="100%" stop-color="#a18cd1"/>
+    </linearGradient>
+    <filter id="blurFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+    </filter>
+  </defs>
+  <!-- Ambient outer glow -->
+  <circle cx="256" cy="256" r="236" fill="url(#glow)" filter="url(#blurFilter)" />
+  <!-- Obsidian primary circle -->
+  <circle cx="256" cy="256" r="216" fill="#09090b" stroke="url(#neonGradient)" stroke-width="8" />
+  <!-- Elegant vector prompt lightning bolt -->
+  <polygon points="280,80 170,260 255,260 220,430 340,230 255,230" fill="#ffffff" />
+  <polygon points="275,95 190,250 255,250 235,360 280,250 255,250" fill="#00f2fe" opacity="0.4" />
+</svg>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Prompt Optimizer Pro</title>
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <svg class="header-logo" viewBox="0 0 512 512" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00f2fe" />
+              <stop offset="100%" stop-color="#a18cd1" />
+            </linearGradient>
+          </defs>
+          <circle cx="256" cy="256" r="236" fill="#09090b" stroke="url(#logoGrad)" stroke-width="32" />
+          <polygon points="280,80 170,260 255,260 220,430 340,230 255,230" fill="#ffffff" />
+        </svg>
+        <div class="title-sub">
+          <h1>Prompt Optimizer</h1>
+          <span class="badge">PRO</span>
+        </div>
+      </div>
+      <div class="status-indicator">
+        <span class="status-dot green"></span>
+        <span class="status-text">Active</span>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <main class="app-content">
+      <!-- Section: API Credentials -->
+      <section class="settings-card">
+        <div class="card-header">
+          <div class="card-title-container">
+            <span class="card-icon">🔑</span>
+            <h2>Groq API Credentials</h2>
+          </div>
+          <a href="https://console.groq.com/keys" target="_blank" class="helper-link">Get Key</a>
+        </div>
+        <div class="input-group">
+          <div class="password-wrapper">
+            <input type="password" id="api-key-input" placeholder="Paste your Groq API Key here..." autocomplete="off" />
+            <button type="button" id="toggle-password" class="icon-btn" title="Toggle visibility">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="eye-icon"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+          </div>
+          <button id="save-settings-btn" class="glow-btn">Save Key</button>
+        </div>
+        <p id="save-status-msg" class="status-message"></p>
+      </section>
+
+      <!-- Section: Optimization Strategy Selector -->
+      <section class="settings-card">
+        <div class="card-header">
+          <div class="card-title-container">
+            <span class="card-icon">⚡</span>
+            <h2>Optimization Style</h2>
+          </div>
+        </div>
+        
+        <div class="style-grid">
+          <!-- Card 1: Supercharged -->
+          <label class="style-card">
+            <input type="radio" name="opt-style" value="supercharged" checked />
+            <span class="style-card-content">
+              <span class="style-icon">🚀</span>
+              <span class="style-title">Supercharged</span>
+              <span class="style-desc">Crisp, structured instructions, step-by-step logic.</span>
+            </span>
+          </label>
+
+          <!-- Card 2: Role Player -->
+          <label class="style-card">
+            <input type="radio" name="opt-style" value="roleplayer" />
+            <span class="style-card-content">
+              <span class="style-icon">🎯</span>
+              <span class="style-title">Role Player</span>
+              <span class="style-desc">Casts AI as top-tier domain experts.</span>
+            </span>
+          </label>
+
+          <!-- Card 3: Clear & Concise -->
+          <label class="style-card">
+            <input type="radio" name="opt-style" value="concise" />
+            <span class="style-card-content">
+              <span class="style-icon">📝</span>
+              <span class="style-title">Concise</span>
+              <span class="style-desc">Removes fluff, clean lists, high accuracy.</span>
+            </span>
+          </label>
+
+          <!-- Card 4: Creative Explorer -->
+          <label class="style-card">
+            <input type="radio" name="opt-style" value="creative" />
+            <span class="style-card-content">
+              <span class="style-icon">🎨</span>
+              <span class="style-title">Creative</span>
+              <span class="style-desc">Sparks novel ideas & multiple view angles.</span>
+            </span>
+          </label>
+        </div>
+
+        <!-- Custom Guidelines Accordion Toggle -->
+        <div class="custom-instructions-container">
+          <button id="toggle-custom-rules" class="accordion-header">
+            <span>⚙️ Custom Instructions & Rules</span>
+            <svg class="chevron-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div id="custom-rules-body" class="accordion-content hidden">
+            <textarea id="custom-rules-input" placeholder="e.g. 'Always answer in bullet points', 'Target a senior developer persona', 'Provide responses in Spanish'"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Instant Playground Sandbox -->
+      <section class="settings-card playground-card">
+        <div class="card-header">
+          <div class="card-title-container">
+            <span class="card-icon">🧪</span>
+            <h2>Playground Sandbox</h2>
+          </div>
+        </div>
+
+        <div class="playground-layout">
+          <div class="textarea-container">
+            <textarea id="playground-input" placeholder="Type a draft prompt to optimize here..."></textarea>
+            <div class="character-count" id="char-count-input">0 chars</div>
+          </div>
+
+          <div class="button-strip">
+            <button id="optimize-sandbox-btn" class="primary-btn">
+              <span>Optimize Prompt</span>
+            </button>
+          </div>
+
+          <div class="output-wrapper">
+            <div class="output-header">
+              <span>Optimized Prompt Output</span>
+              <button id="copy-output-btn" class="action-icon-btn" title="Copy to Clipboard">
+                <svg id="copy-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <svg id="check-icon" class="hidden" viewBox="0 0 24 24" width="16" height="16" stroke="#4ade80" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </button>
+            </div>
+            <textarea id="playground-output" readonly placeholder="Your polished prompt will appear here..."></textarea>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <span>AI Prompt Optimizer Pro • v1.0.0</span>
+      <div class="footer-links">
+        <span class="badge shortcut-badge">Cmd+Shift+O</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
